@@ -18,5 +18,5 @@ out/report.blg: bib.bib
 	pdflatex -halt-on-error -output-directory out report.tex
 	mv out/report.pdf .
 
-word_count.txt: abstract.tex acknowledgements.tex introduction.tex lit_review.tex analysis.tex design.tex
-	texcount -1 -sum abstract.tex acknowledgements.tex introduction.tex lit_review.tex analysis.tex design.tex > word_count.txt
+word_count.txt: abstract.tex acknowledgements.tex introduction.tex lit_review.tex analysis.tex design.tex conclusion.tex
+	texcount -1 -sum abstract.tex acknowledgements.tex introduction.tex lit_review.tex analysis.tex design.tex conclusion.tex > word_count.txt
