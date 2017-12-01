@@ -1,0 +1,10 @@
+# Ignore swap files
+**/*.swp
+
+# Ignore build files
+**/out/*
+**/*.pdf
+**/word_count.txt
+
+# Include included PDFs
+!**/img/*.pdf
