@@ -1,0 +1,110 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref,bookmark}
+\usepackage{natbib} % Bibliography
+\usepackage{graphicx} % Embedding images and figures
+\usepackage{pdfpages} % Embedding PDFs
+\usepackage[page]{appendix} % Making appendix subsections
+\usepackage{cleveref} % Internal cross referencing
+
+\crefname{appsec}{Appendix}{Appendices}
+\graphicspath{ {img/} }
+
+\author{Firstname Surname}
+\title{Project Title}
+\def \subtitle{Project Report}
+
+\makeatletter
+\hypersetup{
+  pdftitle={\@title},
+  pdfauthor={\@author},
+  colorlinks=false,
+  bookmarks=true,
+  pdfborder=0 0 0,
+}
+\makeatother
+
+\begin{document}
+\bibliographystyle{agsm}
+
+\makeatletter
+\begin{titlepage}
+    \centering
+    % HEADER BLOCK
+    {\scshape\huge University of Southampton \par}
+    \vspace{0.3cm}
+    {\LARGE Faculty of Physical Sciences and Engineering \par}
+    \vspace{0.3cm}
+    {\LARGE Department of Electronics and Computer Science \par}
+    \vspace{4cm}
+    % TITLE BLOCK
+    {\huge\bfseries \@title \par}
+    \vspace{4cm}
+    {\LARGE A \subtitle \ submitted for the award of TODO \par}
+    \vspace{3cm}
+    % AUTHOR(S) BLOCK
+    {\centering\LARGE Author: \@author \par}
+    \vspace{0.5cm}
+    {\centering\Large Project Supervisor: TODO \par}
+    {\centering\Large Second Examiner: TODO \par}
+    \vspace{3cm}
+    % FOOTER BLOCK
+    {\Large Academic Year 20xx-xx \par}
+    \vspace{0.7cm}
+    {Word Count: \input{word_count.txt}}
+\end{titlepage}
+\makeatother
+\newpage
+
+% ABSTRACT
+\input{abstract}
+\addcontentsline{toc}{section}{Abstract}
+\newpage
+
+% ACKNOWLEDGEMENTS
+\input{acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgments}
+\newpage
+
+% CONTENTS PAGE
+\tableofcontents
+\newpage
+
+% INTRODUCTION
+\input{introduction}
+\newpage
+
+% LITERATURE REVIEW
+\input{lit_review}
+\newpage
+
+% ANALYSIS
+\input{analysis}
+\newpage
+
+% DESIGN
+\input{design}
+\newpage
+
+% CONCLUSION
+\input{conclusion}
+\newpage
+
+% REFERENCES
+\newpage
+\addcontentsline{toc}{section}{References}
+\bibliography{bib}
+
+% APPENDICES
+\newpage
+\begin{appendices}
+  \bookmarksetupnext{level=-1}
+  \addappheadtotoc
+  \crefalias{section}{appsec}
+  \crefalias{section}{appsec}
+
+  \input{appendices.tex}
+
+\end{appendices}
+\end{document}
