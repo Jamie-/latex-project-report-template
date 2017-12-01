@@ -14,7 +14,7 @@ report.pdf: word_count.txt *.tex appendices/*.tex out/report.blg
 
 out/report.blg: bib.bib
 	pdflatex -halt-on-error -output-directory out report.tex
-	bibtex out/report
+	biber out/report
 	pdflatex -halt-on-error -output-directory out report.tex
 	mv out/report.pdf .
 

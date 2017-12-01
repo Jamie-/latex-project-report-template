@@ -2,7 +2,16 @@
 \usepackage[utf8]{inputenc}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref,bookmark}
-\usepackage{natbib} % Bibliography
+\usepackage[
+    backend=biber,
+    style=ieee,
+    sortlocale=en_GB,
+    natbib=true,
+    url=false,
+    doi=true,
+    eprint=false
+]{biblatex} % Bibliography
+\addbibresource{bib.bib}
 \usepackage{graphicx} % Embedding images and figures
 \usepackage{pdfpages} % Embedding PDFs
 \usepackage[page]{appendix} % Making appendix subsections
@@ -26,7 +35,6 @@
 \makeatother
 
 \begin{document}
-\bibliographystyle{agsm}
 
 \makeatletter
 \begin{titlepage}
@@ -94,7 +102,7 @@
 % REFERENCES
 \newpage
 \addcontentsline{toc}{section}{References}
-\bibliography{bib}
+\printbibliography
 
 % APPENDICES
 \newpage
