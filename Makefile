@@ -1,22 +1,31 @@
 .PHONY: clean compile bib
 .DEFAULT_GOAL: compile
 
-compile: report.pdf
+## Set out directory
+OUT = out
 
-bib: out/report.blg
+## Document name
+NAME = report
+
+compile: $(NAME).pdf
+
+bib: $(OUT)/$(NAME).blg
 
 clean:
-	rm -rf report.pdf word_count.txt out/*
+	rm -rf $(NAME).pdf word_count.txt $(OUT)*
 
-report.pdf: word_count.txt *.tex appendices/*.tex out/report.blg
-	pdflatex -halt-on-error -output-directory out report.tex
-	mv out/report.pdf .
+$(NAME).pdf:  $(OUT)/ word_count.txt *.tex appendices/*.tex $(OUT)/$(NAME).blg
+	pdflatex -halt-on-error -output-directory out $(NAME).tex
+	mv $(OUT)/$(NAME).pdf .
 
-out/report.blg: bib.bib
-	pdflatex -halt-on-error -output-directory out report.tex
-	biber out/report
-	pdflatex -halt-on-error -output-directory out report.tex
-	mv out/report.pdf .
+$(OUT)/:
+	mkdir out
+
+$(OUT)/$(NAME).blg: bib.bib
+	pdflatex -halt-on-error -output-directory $(OUT) $(NAME).tex
+	biber $(OUT)/$(NAME)
+	pdflatex -halt-on-error -output-directory $(OUT) $(NAME).tex
+	mv $(OUT)/$(NAME).pdf .
 
 word_count.txt: abstract.tex acknowledgements.tex introduction.tex lit_review.tex analysis.tex design.tex conclusion.tex
 	texcount -1 -sum abstract.tex acknowledgements.tex introduction.tex lit_review.tex analysis.tex design.tex conclusion.tex > word_count.txt
